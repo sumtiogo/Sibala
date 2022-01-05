@@ -4,10 +4,7 @@ export class Parser {
   parse(input: string): Player[] {
     //Black: 1 2 3 4  White: 2 3 4 5
     const sections = input.split("  ");
-    const player1 = Parser.getPlayer(sections[0]);
-    const player2 = Parser.getPlayer(sections[1]);
-
-    return [player1, player2];
+    return [Parser.getPlayer(sections[0]), Parser.getPlayer(sections[1])];
   }
 
   private static getPlayer(section: string) {
