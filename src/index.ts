@@ -1,3 +1,5 @@
-export function add(a: number, b: number): number {
-  return a + b;
+export class Game {
+  static showResult(input: string): string {
+    return "Tie.";
+  }
 }

@@ -1,5 +1,6 @@
-import { add } from "./index";
+import { Game } from "./index";
 
-test("two plus two is four", () => {
-  expect(add(2, 2)).toBe(5);
+test("no point tie no point", () => {
+  expect(Game.showResult("Black: 1 2 3 4  White: 2 3 4 5")).toEqual("Tie.");
+  expect(Game.showResult("Black: 2 2 2 4  White: 3 3 3 5")).toEqual("Tie.");
 });
