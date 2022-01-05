@@ -1,4 +1,4 @@
-import { Game } from "./index";
+import { Game } from "./Game";
 
 test("no point tie no point", () => {
   expect(Game.showResult("Black: 1 2 3 4  White: 2 3 4 5")).toEqual("Tie.");

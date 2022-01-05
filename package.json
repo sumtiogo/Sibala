@@ -2,7 +2,7 @@
   "name": "sibala",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.ts",
+  "main": "src/Game.ts",
   "scripts": {
     "test": "jest"
   },
