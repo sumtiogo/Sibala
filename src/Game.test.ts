@@ -17,7 +17,9 @@ describe("Game", () => {
       "Black: 3 4 5 6  White: 4 1 4 2",
       "White win. - with normal point: 3"
     );
-    //   - Black: 4 3 4 2  White: 3 5 5 5
-    //   - Black win. - with normal point: 5
+    resultShouldBe(
+      "Black: 4 3 4 2  White: 3 5 5 5",
+      "Black win. - with normal point: 5"
+    );
   });
 });
