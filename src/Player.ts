@@ -1,13 +1,20 @@
 export class Player {
-  constructor(public name: string, public dices: string[]) {}
-  public getCategory() {
-    const countMap1 = {} as Record<string, number>;
+  private countMap = {} as Record<string, number>;
+  public readonly category: Category;
+  public readonly normalPoints: number;
+  constructor(public name: string, public dices: string[]) {
     this.dices.forEach((d) => {
-      countMap1[d] = d in countMap1 ? countMap1[d] + 1 : 1;
+      this.countMap[d] = d in this.countMap ? this.countMap[d] + 1 : 1;
     });
-    return Object.values(countMap1).some((v) => v === 2)
+
+    this.category = Object.values(this.countMap).some((v) => v === 2)
       ? Category.NormalPoint
       : Category.NoPoint;
+
+    this.normalPoints = Object.entries(this.countMap)
+      .filter((k, c) => c != 2)
+      .map(([k]) => Number(k))
+      .reduce((a, b) => a + b);
   }
 }
 
