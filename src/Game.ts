@@ -9,7 +9,7 @@ export class Game {
     const player2Category = this.getCategory(players[1].dices);
 
     if (player2Category > player1Category) {
-      return "White win. - with normal point: 3";
+      return `${players[1].name} win. - with normal point: 3`;
     }
     return "Tie.";
   }
