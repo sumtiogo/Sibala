@@ -8,8 +8,8 @@ export class Parser {
   }
 
   private static getPlayer(section: string) {
-    const player1Name = section.split(": ")[0];
-    const player1Dices = section.split(": ")[1].split(" ");
-    return new Player(player1Name, player1Dices);
+    const name = section.split(": ")[0];
+    const dices = section.split(": ")[1].split(" ");
+    return new Player(name, dices);
   }
 }
