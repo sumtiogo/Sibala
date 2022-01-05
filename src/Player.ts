@@ -12,7 +12,7 @@ export class Player {
       : Category.NoPoint;
 
     this.normalPoints = Object.entries(this.countMap)
-      .filter((k, c) => c != 2)
+      .filter(([_, c]) => c != 2)
       .map(([k]) => Number(k))
       .reduce((a, b) => a + b);
   }
