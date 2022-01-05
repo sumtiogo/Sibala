@@ -11,6 +11,9 @@ export class Game {
     if (player2Category > player1Category) {
       return `${players[1].name} win. - with normal point: 3`;
     }
+    if (player2Category < player1Category) {
+      return "Black win. - with normal point: 5";
+    }
     return "Tie.";
   }
 }
