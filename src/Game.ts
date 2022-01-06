@@ -25,6 +25,12 @@ export class Game {
           compareResult > 0 ? players[0].pointDices : players[1].pointDices;
         winnerName = compareResult > 0 ? players[0].name : players[1].name;
         return `${winnerName} win. - with normal point: ${winnerPointDices[0]} over ${winnerPointDices[1]}`;
+      } else {
+        compareResult = players[0].pointDices[0] - players[1].pointDices[0];
+        const winnerPointDices =
+          compareResult > 0 ? players[0].pointDices : players[1].pointDices;
+        winnerName = compareResult > 0 ? players[0].name : players[1].name;
+        return `${winnerName} win. - with normal point: ${winnerPointDices[0]} over ${winnerPointDices[1]}`;
       }
     }
     return "Tie.";
