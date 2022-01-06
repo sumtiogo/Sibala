@@ -1,5 +1,5 @@
 import { Parser } from "./Parser";
-import { Category, Player } from "./Player";
+import { CategoryType, Player } from "./Player";
 
 export class Game {
   showResult(input: string): string {
@@ -7,17 +7,17 @@ export class Game {
     if (player1.category != player2.category) {
       const winner = player1.category > player2.category ? player1 : player2;
 
-      if (winner.category === Category.AllOfAKind) {
+      if (winner.category === CategoryType.AllOfAKind) {
         return `${winner.name} win. - with all of a kind: ${winner.dices[0]}`;
       }
 
       return `${winner.name} win. - with normal point: ${winner.normalPoints}`;
-    } else if (player1.category === Category.NormalPoint) {
+    } else if (player1.category === CategoryType.NormalPoint) {
       const { winnerOutput, winnerName, compareResult } =
         Game.normalPointCompare(player1, player2);
       if (compareResult != 0)
         return `${winnerName} win. - with normal point: ${winnerOutput}`;
-    } else if (player1.category === Category.AllOfAKind) {
+    } else if (player1.category === CategoryType.AllOfAKind) {
       const order = ["1", "4", "6", "5", "3", "2"].reverse();
       const compareResult =
         order.indexOf(player1.dices[0]) - order.indexOf(player2.dices[0]);
