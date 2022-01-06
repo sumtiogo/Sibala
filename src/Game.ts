@@ -18,7 +18,13 @@ export class Game {
       if (compareResult != 0)
         return `${winnerName} win. - with normal point: ${winnerOutput}`;
     } else if (player1.category === Category.AllOfAKind) {
-      return "Black win. - with all of a kind: 1";
+      const order = ["1", "4", "6", "5", "3", "2"].reverse();
+      const compareResult =
+        order.indexOf(player1.dices[0]) - order.indexOf(player2.dices[0]);
+      if (compareResult != 0) {
+        const winner = compareResult > 0 ? player1 : player2;
+        return `${winner.name} win. - with all of a kind: ${winner.dices[0]}`;
+      }
     }
     return "Tie.";
   }
