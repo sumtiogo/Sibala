@@ -15,21 +15,30 @@ export class Game {
 
   showResult(input: string): string {
     const [player1, player2] = new Parser().parse(input);
-    if (player1.category.type != player2.category.type) {
-      const winner =
-        player1.category.type > player2.category.type ? player1 : player2;
+    const [type1, type2] = [player1.category.type, player2.category.type];
 
-      if (winner.category.type === CategoryType.AllOfAKind) {
-        return `${winner.name} win. - with ${winner.category.output}: ${winner.dices[0]}`;
-      }
-      return `${winner.name} win. - with ${winner.category.output}: ${winner.normalPoints}`;
-    } else {
-      const compare = Game.sameTypeComparator[player1.category.type];
-      const { output, winner, result } = compare(player1, player2);
-      if (result != 0)
-        return `${winner.name} win. - with ${winner.category.output}: ${output}`;
-    }
-    return "Tie.";
+    const compare: CompareFunc =
+      type1 != type2
+        ? Game.differentCategoryCompare
+        : Game.sameTypeComparator[type1];
+
+    const { output, winner, result } = compare(player1, player2);
+    return result != 0
+      ? `${winner.name} win. - with ${winner.category.output}: ${output}`
+      : "Tie.";
+  }
+
+  private static differentCategoryCompare(player1: Player, player2: Player) {
+    const result = player1.category.type - player2.category.type;
+    const winner = result > 0 ? player1 : player2;
+
+    const output =
+      winner.category.type === CategoryType.AllOfAKind
+        ? winner.dices[0]
+        : winner.category.type === CategoryType.NormalPoint
+        ? winner.normalPoints.toString()
+        : "";
+    return { winner, output, result };
   }
 
   private static noPointCompare(player1: Player, _: Player) {
