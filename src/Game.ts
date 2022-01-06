@@ -1,10 +1,16 @@
 import { Parser } from "./Parser";
 import { CategoryType, Player } from "./Player";
 
+type CompareFunc = (
+  p1: Player,
+  p2: Player
+) => { winner: Player; output: string; result: number };
+
 export class Game {
-  static sameTypeComparator = {
+  static sameTypeComparator: Record<CategoryType, CompareFunc> = {
     [CategoryType.NormalPoint]: Game.normalPointCompare,
     [CategoryType.AllOfAKind]: Game.allOfAKindCompare,
+    [CategoryType.NoPoint]: Game.noPointCompare,
   };
 
   showResult(input: string): string {
@@ -17,13 +23,20 @@ export class Game {
         return `${winner.name} win. - with ${winner.category.output}: ${winner.dices[0]}`;
       }
       return `${winner.name} win. - with ${winner.category.output}: ${winner.normalPoints}`;
-    } else if (player1.category.type != CategoryType.NoPoint) {
+    } else {
       const compare = Game.sameTypeComparator[player1.category.type];
       const { output, winner, result } = compare(player1, player2);
       if (result != 0)
         return `${winner.name} win. - with ${winner.category.output}: ${output}`;
     }
     return "Tie.";
+  }
+
+  private static noPointCompare(player1: Player, _: Player) {
+    const result = 0;
+    const output = "";
+    const winner = player1;
+    return { result, output, winner };
   }
 
   private static allOfAKindCompare(player1: Player, player2: Player) {
