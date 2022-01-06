@@ -33,9 +33,6 @@ describe("Game", () => {
       "Black: 4 1 4 6  White: 3 4 5 5",
       "Black win. - with normal point: 6 over 1"
     );
-    //
-    // // tie
-    // - Black: 3 6 5 5  White: 4 4 3 6
-    // - Tie.
+    resultShouldBe("Black: 3 6 5 5  White: 4 4 3 6", "Tie.");
   });
 });
