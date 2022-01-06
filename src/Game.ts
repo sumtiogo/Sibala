@@ -1,31 +1,37 @@
 import { Parser } from "./Parser";
-import { Category } from "./Player";
+import { Category, Player } from "./Player";
 
 export class Game {
   showResult(input: string): string {
-    const players = new Parser().parse(input);
+    const [player1, player2] = new Parser().parse(input);
 
-    if (players[0].category != players[1].category) {
+    if (player1.category != player2.category) {
       const winnerName =
-        players[0].category > players[1].category
-          ? players[0].name
-          : players[1].name;
+        player1.category > player2.category ? player1.name : player2.name;
       const winnerOutput =
-        players[0].category > players[1].category
-          ? players[0].normalPoints.toString()
-          : players[1].normalPoints.toString();
+        player1.category > player2.category
+          ? player1.normalPoints.toString()
+          : player2.normalPoints.toString();
       return `${winnerName} win. - with normal point: ${winnerOutput}`;
-    } else if (players[0].category === Category.NormalPoint) {
-      const compareResult =
-        players[0].normalPoints - players[1].normalPoints != 0
-          ? players[0].normalPoints - players[1].normalPoints
-          : players[0].pointDices[0] - players[1].pointDices[0];
-      const winnerPointDices =
-        compareResult > 0 ? players[0].pointDices : players[1].pointDices;
-      const winnerOutput = `${winnerPointDices[0]} over ${winnerPointDices[1]}`;
-      const winnerName = compareResult > 0 ? players[0].name : players[1].name;
+    } else if (player1.category === Category.NormalPoint) {
+      const { winnerOutput, winnerName } = Game.normalPointCompare(
+        player1,
+        player2
+      );
       return `${winnerName} win. - with normal point: ${winnerOutput}`;
     }
     return "Tie.";
+  }
+
+  private static normalPointCompare(player1: Player, player2: Player) {
+    const compareResult =
+      player1.normalPoints - player2.normalPoints != 0
+        ? player1.normalPoints - player2.normalPoints
+        : player1.pointDices[0] - player2.pointDices[0];
+    const winnerPointDices =
+      compareResult > 0 ? player1.pointDices : player2.pointDices;
+    const winnerOutput = `${winnerPointDices[0]} over ${winnerPointDices[1]}`;
+    const winnerName = compareResult > 0 ? player1.name : player2.name;
+    return { winnerOutput, winnerName };
   }
 }
