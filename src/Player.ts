@@ -8,7 +8,9 @@ export class Player {
       this.countMap[d] = d in this.countMap ? this.countMap[d] + 1 : 1;
     });
 
-    this.category = Object.values(this.countMap).some((v) => v === 2)
+    this.category = Object.values(this.countMap).some((v) => v === 4)
+      ? Category.AllOfAKind
+      : Object.values(this.countMap).some((v) => v === 2)
       ? Category.NormalPoint
       : Category.NoPoint;
 
@@ -28,4 +30,5 @@ export class Player {
 export enum Category {
   NoPoint = 0,
   NormalPoint = 1,
+  AllOfAKind = 2,
 }
