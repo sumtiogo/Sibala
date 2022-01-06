@@ -1,6 +1,6 @@
 export class Player {
   private countMap = {} as Record<string, number>;
-  public readonly category: CategoryType;
+  public readonly category: Category;
   public readonly normalPoints: number;
   public readonly pointDices: number[];
   constructor(public name: string, public dices: string[]) {
@@ -9,10 +9,10 @@ export class Player {
     });
 
     this.category = Object.values(this.countMap).some((v) => v === 4)
-      ? CategoryType.AllOfAKind
+      ? new Category(CategoryType.AllOfAKind, "all of a kind")
       : Object.values(this.countMap).some((v) => v === 2)
-      ? CategoryType.NormalPoint
-      : CategoryType.NoPoint;
+      ? new Category(CategoryType.NormalPoint, "normal point")
+      : new Category(CategoryType.NoPoint, "");
 
     this.normalPoints = Object.entries(this.countMap)
       .filter(([_, c]) => c != 2)
@@ -25,6 +25,10 @@ export class Player {
       .sort()
       .reverse();
   }
+}
+
+class Category {
+  constructor(public type: CategoryType, public output: string) {}
 }
 
 export enum CategoryType {

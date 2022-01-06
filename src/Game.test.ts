@@ -47,7 +47,7 @@ describe("Game", () => {
       "White win. - with all of a kind: 1"
     );
   });
-  test("all of a kind v.s. all of a kink", () => {
+  test("all of a kind v.s. all of a kind", () => {
     // // special order
     resultShouldBe(
       "Black: 1 1 1 1  White: 4 4 4 4",
