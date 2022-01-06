@@ -41,5 +41,10 @@ describe("Game", () => {
       "Black: 5 5 5 5  White: 5 6 5 4",
       "Black win. - with all of a kind: 5"
     );
+
+    resultShouldBe(
+      "Black: 5 3 2 5  White: 1 1 1 1",
+      "White win. - with all of a kind: 1"
+    );
   });
 });

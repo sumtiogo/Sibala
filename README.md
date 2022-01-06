@@ -61,6 +61,9 @@
 - Black: 5 5 5 5  White: 5 6 5 4
 - Black win. - with all of a kind: 5
 
+- Black: 5 3 2 5  White: 1 1 1 1
+- White win. - with all of a kind: 1
+
 ### all of a kind v.s. all of a kink
 // special order
 - Black: 1 1 1 1  White: 4 4 4 4 4

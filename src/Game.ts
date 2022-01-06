@@ -8,12 +8,10 @@ export class Game {
       const winner = player1.category > player2.category ? player1 : player2;
 
       if (winner.category === Category.AllOfAKind) {
-        return `${winner.name} win. - with all of a kind: 5`;
+        return `${winner.name} win. - with all of a kind: ${winner.dices[0]}`;
       }
 
-      const winnerOutput = winner.normalPoints.toString();
-
-      return `${winner.name} win. - with normal point: ${winnerOutput}`;
+      return `${winner.name} win. - with normal point: ${winner.normalPoints}`;
     } else if (player1.category === Category.NormalPoint) {
       const { winnerOutput, winnerName, compareResult } =
         Game.normalPointCompare(player1, player2);
