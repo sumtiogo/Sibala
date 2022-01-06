@@ -17,6 +17,8 @@ export class Game {
         Game.normalPointCompare(player1, player2);
       if (compareResult != 0)
         return `${winnerName} win. - with normal point: ${winnerOutput}`;
+    } else if (player1.category === Category.AllOfAKind) {
+      return "Black win. - with all of a kind: 1";
     }
     return "Tie.";
   }
