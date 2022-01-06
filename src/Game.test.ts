@@ -35,4 +35,11 @@ describe("Game", () => {
     );
     resultShouldBe("Black: 3 6 5 5  White: 4 4 3 6", "Tie.");
   });
+
+  test("all of a kind win normal point", () => {
+    resultShouldBe(
+      "Black: 5 5 5 5  White: 5 6 5 4",
+      "Black win. - with all of a kind: 5"
+    );
+  });
 });
