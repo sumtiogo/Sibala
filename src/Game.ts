@@ -4,15 +4,16 @@ import { Category, Player } from "./Player";
 export class Game {
   showResult(input: string): string {
     const [player1, player2] = new Parser().parse(input);
-
     if (player1.category != player2.category) {
-      const winnerName =
-        player1.category > player2.category ? player1.name : player2.name;
-      const winnerOutput =
-        player1.category > player2.category
-          ? player1.normalPoints.toString()
-          : player2.normalPoints.toString();
-      return `${winnerName} win. - with normal point: ${winnerOutput}`;
+      const winner = player1.category > player2.category ? player1 : player2;
+
+      if (winner.category === Category.AllOfAKind) {
+        return `${winner.name} win. - with all of a kind: 5`;
+      }
+
+      const winnerOutput = winner.normalPoints.toString();
+
+      return `${winner.name} win. - with normal point: ${winnerOutput}`;
     } else if (player1.category === Category.NormalPoint) {
       const { winnerOutput, winnerName, compareResult } =
         Game.normalPointCompare(player1, player2);
