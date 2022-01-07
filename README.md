@@ -53,6 +53,18 @@
 - Black: 4 1 4 6  White: 3 4 5 5
 - Black win. - with normal point: 6 over 1
 
+// same sum, tie
+- Black: 4 1 4 2  White: 1 2 5 5
+- Tie.
+
+// two pair with winner
+- Black: 1 6 1 6  White: 3 3 5 5
+- Black win. - with normal point: 6 over 6
+
+// two pairs tie
+- Black: 4 1 4 1  White: 4 4 1 1
+- Tie.
+- 
 // tie
 - Black: 3 6 5 5  White: 4 4 3 6
 - Tie.

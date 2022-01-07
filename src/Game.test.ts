@@ -21,6 +21,17 @@ describe("Game", () => {
       "Black: 4 3 4 2  White: 3 5 5 5",
       "Black win. - with normal point: 5"
     );
+    // same sum, tie
+    resultShouldBe("Black: 4 1 4 2  White: 1 2 5 5", "Tie.");
+
+    // two pair with winner
+    resultShouldBe(
+      "Black: 1 6 1 6  White: 3 3 5 5",
+      "Black win. - with normal point: 6 over 6"
+    );
+
+    // two pairs tie
+    resultShouldBe("Black: 4 1 4 1  White: 4 4 1 1", "Tie.");
   });
 
   test("normal point v.s. normal point", () => {
